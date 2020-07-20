@@ -1,25 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+//components
+import AlertComponent from "./components/AlertComponent/AlertComponent";
+import Header from "./components/Header/Header";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+import Home from "./components/Home/Home";
 
 function App() {
+  const [title, updateTitle] = useState(null);
+  const [errorMessage, updateErrorMessage] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Header title={title} />
+        <div>
+          <Switch>
+            <Route path="/" exact={true}>
+              <RegistrationForm
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
+              />
+            </Route>
+            <Route path="/register">
+              <RegistrationForm
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
+              />
+            </Route>
+            <Route path="/login">
+              <LoginForm
+                showError={updateErrorMessage}
+                updateTitle={updateTitle}
+              />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+          </Switch>
+          <AlertComponent
+            errorMessage={errorMessage}
+            hideError={updateErrorMessage}
+          />
+        </div>
+      </div>
+    </Router>
   );
 }
 
