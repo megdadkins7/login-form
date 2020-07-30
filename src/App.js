@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //components
-import AlertComponent from "./components/AlertComponent/AlertComponent";
-import Header from "./components/Header/Header";
-import LoginForm from "./components/LoginForm/LoginForm";
-import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
-import Home from "./components/Home/Home";
+import Alert from "./components/Alert";
+import Header from "./components/Header";
+import LoginForm from "./components/LoginForm";
+import RegistrationForm from "./components/RegistrationForm";
+import Home from "./components/Home";
 
 function App() {
   const [title, updateTitle] = useState(null);
@@ -39,10 +39,7 @@ function App() {
               <Home />
             </Route>
           </Switch>
-          <AlertComponent
-            errorMessage={errorMessage}
-            hideError={updateErrorMessage}
-          />
+          <Alert errorMessage={errorMessage} hideError={updateErrorMessage} />
         </div>
       </div>
     </Router>

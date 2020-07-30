@@ -1,5 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledHeader = styled.nav`
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: -20px;
+  font-size: 20px;
+`;
 
 function Header(props) {
   const capitalize = (s) => {
@@ -10,11 +19,11 @@ function Header(props) {
     props.location.pathname.substring(1, props.location.pathname.length)
   );
   return (
-    <nav>
+    <StyledHeader>
       <div>
         <span>{props.title || title}</span>
       </div>
-    </nav>
+    </StyledHeader>
   );
 }
 export default withRouter(Header);
